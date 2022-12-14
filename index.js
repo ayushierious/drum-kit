@@ -5,13 +5,23 @@ for(var i=0;i<drums;i++){
   document.querySelectorAll(".drum")[i].addEventListener("click", function() {
   var buttoninnerhtml=this.innerHTML;
   makesound(buttoninnerhtml);
+  buttonAnimation(buttoninnerhtml);
   });
 }
   // detecting key press from keyboard
   document.addEventListener("keydown", function(event){
     makesound(event.key);
+    buttonAnimation(event.key);
   });
   //passing args button or key press to makesound
+  function buttonAnimation(currentkey){
+    var activebutton=document.querySelector("."+currentkey);
+    activebutton.classList.add("pressed");
+    setTimeout (function(){
+      activebutton.classList.remove("pressed");
+    },100);
+  }
+  
 function  makesound(key){
   switch(key){
     case "w" : var tom1= new Audio("sounds/tom-1.mp3");
